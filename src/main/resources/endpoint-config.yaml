@@ -1,0 +1,8 @@
+- method: GET
+  urlPath: /user1
+  status: 200
+  pathToFile: D:/projects/mock-generator/src/main/resources/responses/test1.json
+- method: POST
+  urlPath: /user2
+  status: 200
+  pathToFile: D:/projects/mock-generator/src/main/resources/responses/test2.json
