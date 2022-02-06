@@ -8,10 +8,10 @@ import java.io.File
 import kotlin.streams.toList
 
 fun main() {
-    val configPathPropName = "config.path"
+    val configPathPropName = "endpoint.config.path"
     val portPropName = "port"
-    val configPath = System.getenv(configPathPropName) ?: throw java.lang.Exception("specify $configPathPropName")
-    val portProp = System.getenv(portPropName)
+    val configPath = System.getProperty(configPathPropName) ?: throw java.lang.Exception("specify $configPathPropName")
+    val portProp = System.getProperty(portPropName)
 
     val app = Javalin.create().apply {
         exception(Exception::class.java) { e, _ -> e.printStackTrace() }
@@ -29,7 +29,7 @@ fun main() {
             else -> println("not supported")
         }
     }
-    val toList = endpointData.stream().map { it.urlPath }.toList()
+    val toList = endpointData.stream().map { "${it.method} ${it.urlPath}" }.toList()
     app.get("/") { ctx -> ctx.result("endpoints:\n${toList.joinToString(separator = "\n")}") }
 }
 
