@@ -26,6 +26,7 @@ fun main() {
                 app.get(it.urlPath) { ctx -> ctx.json(getResponseBody(it.pathToFile)).status(it.status) }
             }
             HttpMethod.POST -> app.post(it.urlPath) { ctx -> ctx.json(getResponseBody(it.pathToFile)).status(it.status) }
+            HttpMethod.PUT -> app.put(it.urlPath) { ctx -> ctx.json(getResponseBody(it.pathToFile)).status(it.status) }
             else -> println("not supported")
         }
     }
